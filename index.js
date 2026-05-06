@@ -76,9 +76,10 @@ async function main() {
         parsed = parseJSON(raw);
       } catch (e) {
         stopSpinner("Parse error");
-        boxMessage("Failed to parse response from Gemini. Please try again.", "error");
+        console.log(colors.GRAY + "Debug: " + raw.substring(0, 150) + colors.RESET);
+        boxMessage("Response parsing failed. Retrying...", "error");
         nextUserMessage =
-          "Your last response was not valid JSON. Please respond with a single valid JSON object.";
+          "Your response was not valid JSON. Please respond with ONLY a single valid JSON object. No markdown, no extra text. Format: {\"step\":\"THINK\",\"content\":\"your message\"}";
         continue;
       }
 
